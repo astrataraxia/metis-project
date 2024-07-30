@@ -1,3 +1,4 @@
 rootProject.name = 'metis-cloud-service'
-include 'discovery-service'
+include 'metis-discovery-service'
 include 'metis-config-service'
+include 'metis-gateway-service'

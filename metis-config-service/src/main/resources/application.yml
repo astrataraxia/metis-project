@@ -4,4 +4,19 @@ server:
 spring:
   application:
     name: metis-config-service
+  cloud:
+    config:
+      server:
+        git:
+          uri: ${GIT_REPO_URI}
+          default-label: main
+          username: ${GIT_USERNAME}
+          password: ${GIT_PASSWORD}
+        bootstrap: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, busrefresh, refresh ,metrics
 
