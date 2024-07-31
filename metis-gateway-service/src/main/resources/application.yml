@@ -1,22 +1,30 @@
 server:
   port: 8000
 
-
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
 spring:
   application:
     name: metis-gateway-service
+  config:
+    import: configserver:http://127.0.0.1:8888
+  cloud:
+    config:
+      name: gateway-service
     gateway:
       mvc:
         routes:
-  config:
-    import: configserver:http://127.0.0.1:8888
-    name: gateway-service
+          - id: metis-user-service
+            uri: lb://METIS-USER-SERVICE
+            predicates:
+              - Path=/metis-user-service/**
 
 management:
   endpoints:
