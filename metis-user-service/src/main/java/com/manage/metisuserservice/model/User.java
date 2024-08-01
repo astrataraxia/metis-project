@@ -3,12 +3,14 @@ package com.manage.metisuserservice.model;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 
+@Getter
 @Entity
 @Table(name = "users")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -19,7 +21,7 @@ public class User {
     @Column(updatable = false)
     private Long id;
 
-    @Column(nullable = false, unique = true, length = 45)
+    @Column(nullable = false, length = 45)
     private String username;
 
     @Column(nullable = false, unique = true, length = 45, updatable = false)
@@ -39,6 +41,10 @@ public class User {
     private User(String username, String email, String password) {
         this.username = username;
         this.email = email;
+        this.password = password;
+    }
+
+    public void changePassword(String password) {
         this.password = password;
     }
 }

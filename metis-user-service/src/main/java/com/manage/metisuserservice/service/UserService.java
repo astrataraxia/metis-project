@@ -1,19 +1,23 @@
 package com.manage.metisuserservice.service;
 
-import com.manage.metisuserservice.dto.UserDto;
+import com.manage.metisuserservice.dto.PasswordChangeRequestDto;
+import com.manage.metisuserservice.dto.UserRequestDto;
+import com.manage.metisuserservice.dto.UserResponseDto;
 
 import java.util.List;
 
 public interface UserService {
 
-    UserDto createUser(UserDto dto);
+    UserResponseDto createUser(UserRequestDto dto);
 
-    UserDto getUserById(Long id);
+    UserResponseDto getUserById(Long id);
 
-    UserDto getUserByUsername(String username);
+    UserResponseDto getUserByUsername(String username);
 
-    List<UserDto> getAllUsers();
+    UserResponseDto getUserByEmail(String email);
 
-    UserDto updateUser(Long id, UserDto userDto);
+    List<UserResponseDto> getAllUsers();
+
+    void changePassword(Long id, PasswordChangeRequestDto dto);
 
 }
